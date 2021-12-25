@@ -3,12 +3,13 @@ Summary:	QuickJS Javascript Engine
 Summary(pl.UTF-8):	Silnik Javascriptu QuickJS
 Name:		quickjs
 Version:	20210327
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 Source0:	https://bellard.org/%{name}/%{name}-%{ver}.tar.xz 
 # Source0-md5:	135182a626aa0c87a49aa2bf58fd39bf
 Patch0:		rpmpldcflags.patch
+Patch1:		q.diff
 URL:		https://bellard.org/quickjs/
 BuildRequires:	make
 BuildRequires:	libtool
@@ -43,6 +44,7 @@ Pliki nagłówkowe biblioteki %{name}.
 %prep
 %setup -q -n %{name}-%{ver}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} RPMPLDCFLAGS="%{rpmcflags}" \
