@@ -29,16 +29,16 @@ BigInt. Wspiera też rozszerzenia matematyczne, takie jak liczby
 BigDecimal, BigFloat i przeciążenia operatorów.
 
 %package devel
-Summary:	Header files for %{name} library
-Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki %{name}
+Summary:	Header files for QuickJS library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki QuickJS
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
-Header files for %{name} library.
+Header files for QuickJS library.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe biblioteki %{name}.
+Pliki nagłówkowe biblioteki QuickJS.
 
 %prep
 %setup -q -n %{name}-%{ver}
@@ -46,7 +46,9 @@ Pliki nagłówkowe biblioteki %{name}.
 %patch1 -p1
 
 %build
-%{__make} RPMPLDCFLAGS="%{rpmcflags}" \
+%{__make} \
+	CC="%{__cc}" \
+	RPMPLDCFLAGS="%{rpmcflags} %{rpmcppflags}" \
 	LDFLAGS="%{rpmldflags}" \
 	prefix="%{_prefix}"
 
@@ -55,6 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
+	STRIP=true \
 	prefix="%{_prefix}"
 
 %clean
@@ -62,10 +65,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/qjs
+%attr(755,root,root) %{_bindir}/qjsc
+%attr(755,root,root) %{_bindir}/qjscalc
 %{_prefix}/lib/%{name}
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc
+%doc doc/*.html
 %{_includedir}/%{name}
