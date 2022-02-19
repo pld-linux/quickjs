@@ -49,7 +49,7 @@ Pliki nagłówkowe biblioteki QuickJS.
 %{__make} \
 	CC="%{__cc}" \
 	RPMPLDCFLAGS="%{rpmcflags} %{rpmcppflags}" \
-	LDFLAGS="%{rpmldflags}" \
+	LDFLAGS="%{rpmldflags} %{rpmcflags}" \
 	prefix="%{_prefix}"
 
 %install
