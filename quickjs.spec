@@ -54,7 +54,7 @@ Pliki nagłówkowe biblioteki QuickJS.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/%{_libdir}
+install -d $RPM_BUILD_ROOT%{_libdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -62,7 +62,7 @@ install -d $RPM_BUILD_ROOT/%{_libdir}
 	prefix="%{_prefix}"
 
 %if "%{_lib}" != "lib"
-%{__mv} $RPM_BUILD_ROOT/{%{_prefix}/lib,%{_libdir}}/%{name}
+%{__mv} $RPM_BUILD_ROOT{%{_prefix}/lib,%{_libdir}}/%{name}
 %endif
 
 %clean
