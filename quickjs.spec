@@ -3,7 +3,7 @@ Summary:	QuickJS Javascript Engine
 Summary(pl.UTF-8):	Silnik Javascriptu QuickJS
 Name:		quickjs
 Version:	20210327
-Release:	3
+Release:	4
 License:	MIT
 Group:		Libraries
 Source0:	https://bellard.org/quickjs/%{name}-%{ver}.tar.xz
@@ -61,7 +61,9 @@ install -d $RPM_BUILD_ROOT/%{_libdir}
 	STRIP=true \
 	prefix="%{_prefix}"
 
+%if "%{_lib}" != "lib"
 %{__mv} $RPM_BUILD_ROOT/{%{_prefix}/lib,%{_libdir}}/%{name}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
