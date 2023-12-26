@@ -13,6 +13,8 @@ Patch1:		q.diff
 URL:		https://bellard.org/quickjs/
 BuildRequires:	libtool
 BuildRequires:	rpmbuild(macros) >= 1.583
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
