@@ -11,8 +11,11 @@ Source0:	https://bellard.org/quickjs/%{name}-%{ver}.tar.xz
 Patch0:		rpmpldcflags.patch
 Patch1:		q.diff
 URL:		https://bellard.org/quickjs/
+%ifnarch %arch_with_atomics64
+BuildRequires:	libatomic-devel
+%endif
 BuildRequires:	libtool
-BuildRequires:	rpmbuild(macros) >= 1.583
+BuildRequires:	rpmbuild(macros) >= 2.025
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -52,6 +55,9 @@ Pliki nagłówkowe biblioteki QuickJS.
 	CC="%{__cc}" \
 	RPMPLDCFLAGS="%{rpmcflags} %{rpmcppflags}" \
 	LDFLAGS="%{rpmldflags} %{rpmcflags}" \
+%ifnarch %arch_with_atomics64
+	EXTRA_LIBS="-latomic" \
+%endif
 	prefix="%{_prefix}"
 
 %install
