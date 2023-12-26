@@ -1,13 +1,13 @@
-%define		ver	2021-03-27
+%define		ver	2023-12-09
 Summary:	QuickJS Javascript Engine
 Summary(pl.UTF-8):	Silnik Javascriptu QuickJS
 Name:		quickjs
-Version:	20210327
-Release:	4
+Version:	20231209
+Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	https://bellard.org/quickjs/%{name}-%{ver}.tar.xz
-# Source0-md5:	135182a626aa0c87a49aa2bf58fd39bf
+# Source0-md5:	c8d37b54826a11b893c3f5357636ee7d
 Patch0:		rpmpldcflags.patch
 Patch1:		q.diff
 URL:		https://bellard.org/quickjs/
