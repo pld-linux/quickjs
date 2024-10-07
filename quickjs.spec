@@ -1,15 +1,14 @@
-%define		ver	2023-12-09
+%define		ver	2024-01-13
 Summary:	QuickJS Javascript Engine
 Summary(pl.UTF-8):	Silnik Javascriptu QuickJS
 Name:		quickjs
-Version:	20231209
+Version:	20240113
 Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	https://bellard.org/quickjs/%{name}-%{ver}.tar.xz
-# Source0-md5:	c8d37b54826a11b893c3f5357636ee7d
+# Source0-md5:	ea9fa8c503c4125dff9fd42c38b891d0
 Patch0:		rpmpldcflags.patch
-Patch1:		q.diff
 URL:		https://bellard.org/quickjs/
 %ifnarch %arch_with_atomics64
 BuildRequires:	libatomic-devel
@@ -48,7 +47,6 @@ Pliki nagłówkowe biblioteki QuickJS.
 %prep
 %setup -q -n %{name}-%{ver}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__make} \
@@ -58,7 +56,7 @@ Pliki nagłówkowe biblioteki QuickJS.
 %ifnarch %arch_with_atomics64
 	EXTRA_LIBS="-latomic" \
 %endif
-	prefix="%{_prefix}"
+	PREFIX="%{_prefix}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -67,7 +65,7 @@ install -d $RPM_BUILD_ROOT%{_libdir}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	STRIP=true \
-	prefix="%{_prefix}"
+	PREFIX="%{_prefix}"
 
 %if "%{_lib}" != "lib"
 %{__mv} $RPM_BUILD_ROOT{%{_prefix}/lib,%{_libdir}}/%{name}

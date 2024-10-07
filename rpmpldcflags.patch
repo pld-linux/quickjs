@@ -1,12 +1,12 @@
-diff -up quickjs-2021-03-27/Makefile.orig quickjs-2021-03-27/Makefile
---- quickjs-2021-03-27/Makefile.orig	2021-03-27 11:00:32.000000000 +0100
-+++ quickjs-2021-03-27/Makefile	2021-10-09 19:52:07.936499497 +0200
-@@ -110,7 +110,7 @@ endif
+diff -up quickjs-2024-01-13/Makefile.orig quickjs-2024-01-13/Makefile
+--- quickjs-2024-01-13/Makefile.orig	2024-10-07 18:37:31.935011886 +0200
++++ quickjs-2024-01-13/Makefile	2024-10-07 18:38:45.730310335 +0200
+@@ -122,7 +122,7 @@ endif
  CFLAGS+=$(DEFINES)
  CFLAGS_DEBUG=$(CFLAGS) -O0
  CFLAGS_SMALL=$(CFLAGS) -Os
 -CFLAGS_OPT=$(CFLAGS) -O2
 +CFLAGS_OPT=$(CFLAGS) -O2 $(RPMPLDCFLAGS)
  CFLAGS_NOLTO:=$(CFLAGS_OPT)
- LDFLAGS=-g
- ifdef CONFIG_LTO
+ ifdef CONFIG_COSMO
+ LDFLAGS+=-s # better to strip by default
