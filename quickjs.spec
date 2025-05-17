@@ -1,13 +1,13 @@
-%define		ver	2024-01-13
+%define		ver	2025-04-26
 Summary:	QuickJS Javascript Engine
 Summary(pl.UTF-8):	Silnik Javascriptu QuickJS
 Name:		quickjs
-Version:	20240113
+Version:	20250426
 Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	https://bellard.org/quickjs/%{name}-%{ver}.tar.xz
-# Source0-md5:	ea9fa8c503c4125dff9fd42c38b891d0
+# Source0-md5:	61ecb6e741b7e6e40b8803d87d22e9a0
 Patch0:		rpmpldcflags.patch
 URL:		https://bellard.org/quickjs/
 %ifnarch %arch_with_atomics64
@@ -46,7 +46,7 @@ Pliki nagłówkowe biblioteki QuickJS.
 
 %prep
 %setup -q -n %{name}-%{ver}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__make} \
@@ -78,12 +78,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/qjs
 %attr(755,root,root) %{_bindir}/qjsc
-%attr(755,root,root) %{_bindir}/qjscalc
 
 %files devel
 %defattr(644,root,root,755)
 %doc doc/*.html
 %dir %{_libdir}/%{name}
 %{_libdir}/%{name}/libquickjs.a
-%{_libdir}/%{name}/libquickjs.lto.a
 %{_includedir}/%{name}
